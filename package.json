@@ -1,0 +1,30 @@
+{
+	"name": "roblox-feet",
+	"author": "Fireboltofdeath",
+	"version": "0.0.0",
+	"description": "A command line tool to manage feature-based organization for your Rojo project.",
+	"license": "MIT",
+	"main": "out/index.js",
+	"bin": {
+		"feet": "out/index.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w"
+	},
+	"devDependencies": {
+		"@types/figlet": "^1.5.5",
+		"@types/node": "^18.13.0",
+		"@typescript-eslint/eslint-plugin": "^5.51.0",
+		"@typescript-eslint/parser": "^5.51.0",
+		"eslint": "^8.34.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"prettier": "^2.8.4",
+		"typescript": "^4.9.5"
+	},
+	"dependencies": {
+		"commander": "^10.0.0",
+		"figlet": "^1.5.2"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"incremental": true,
+		"tsBuildInfoFile": "./out/.tsbuildinfo",
+		"target": "es2016",
+		"moduleDetection": "force",
+		"module": "commonjs",
+		"rootDir": "./src",
+		"moduleResolution": "node",
+		"outDir": "./out",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true
+	}
+}
