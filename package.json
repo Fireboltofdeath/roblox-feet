@@ -1,7 +1,7 @@
 {
 	"name": "roblox-feet",
 	"author": "Fireboltofdeath",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A command line tool to manage feature-based organization for your Rojo project.",
 	"license": "MIT",
 	"main": "out/index.js",
@@ -9,6 +9,7 @@
 		"feet": "out/index.js"
 	},
 	"scripts": {
+		"prepare": "npm run build",
 		"build": "tsc",
 		"watch": "tsc -w"
 	},
