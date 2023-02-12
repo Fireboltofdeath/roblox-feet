@@ -4,6 +4,7 @@ import { Command } from "commander";
 
 interface FeetConfig {
 	rootDir: string;
+	outDir?: string;
 	project: string;
 	baseProject: string;
 	data: string;
@@ -97,12 +98,14 @@ export function handleRemoveCommand(featPath: string, options: RemoveOptions, co
 	syncRojo(config, data);
 }
 
-function syncRojo({ baseProject: location, project }: FeetConfig, data: FeetData) {
+function syncRojo({ baseProject: location, project, outDir, rootDir }: FeetConfig, data: FeetData) {
 	const projectPath = path.resolve(project);
 	const basePath = path.resolve(location);
 	const baseProject = JSON.parse(fs.readFileSync(basePath, { encoding: "ascii" }));
+	const isTypeScript = fs.existsSync(path.resolve("tsconfig.json"));
 
 	for (const feat of data.features) {
+		const outputPath = outDir ?? (isTypeScript ? "out" : rootDir);
 		const featPath = feat.path.split("/");
 
 		if (feat.mode === "folder") {
@@ -110,16 +113,16 @@ function syncRojo({ baseProject: location, project }: FeetConfig, data: FeetData
 			const serverScriptService = createPath(baseProject.tree.ServerScriptService, featPath);
 			const starterPlayer = createPath(baseProject.tree.StarterPlayer.StarterPlayerScripts, featPath);
 
-			replicatedStorage.$path = { optional: path.join("out", feat.path, "shared") };
-			serverScriptService.$path = { optional: path.join("out", feat.path, "server") };
-			starterPlayer.$path = { optional: path.join("out", feat.path, "client") };
+			replicatedStorage.$path = { optional: path.join(outputPath, feat.path, "shared") };
+			serverScriptService.$path = { optional: path.join(outputPath, feat.path, "server") };
+			starterPlayer.$path = { optional: path.join(outputPath, feat.path, "client") };
 		} else {
 			const targetPath =
 				feat.mode === "client"
 					? createPath(baseProject.tree.StarterPlayer.StarterPlayerScripts, featPath)
 					: createPath(baseProject.tree.ServerScriptService, featPath);
 
-			targetPath.$path = { optional: path.join("out", feat.path) };
+			targetPath.$path = { optional: path.join(outputPath, feat.path) };
 		}
 	}
 
