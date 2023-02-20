@@ -20,3 +20,7 @@ feet add feature/my/nested/feature
 feet remove feature/my-feature
 feet remove --preserve feature/my-feature
 ```
+
+### Drawbacks
+
+This requires modifying the Rojo project which a lot of tooling does not support when actively running (including Rojo itself.)
